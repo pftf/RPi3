@@ -20,7 +20,7 @@ build_script:
   - sh: export CROSS_COMPILE=/usr/bin/aarch64-linux-gnu-
   - sh: export WORKSPACE=$PWD
   - sh: export PACKAGES_PATH=$WORKSPACE/edk2:$WORKSPACE/edk2-platforms:$WORKSPACE/edk2-non-osi
-  - sh: . edk2/edksetup.sh --reconfig
+  - sh: source edk2/edksetup.sh --reconfig
   - sh: build -a AARCH64 -t GCC5 -p edk2-platforms/Platform/RaspberryPi/RPi3/RPi3.dsc -b RELEASE --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString=L"edk2-$FIRMWARE_VERSION"
 
 after_build:
