@@ -13,7 +13,7 @@ environment:
 
 install:
   - sh: sudo apt-get update -qq
-  - sh: sudo -E apt-get install -y gcc-aarch64-linux-gnu python3-distutils
+  - sh: sudo -E apt-get install -y acpica-tools gcc-aarch64-linux-gnu python3-distutils uuid-dev
   - sh: git submodule update --init --recursive
 
 build_script:
