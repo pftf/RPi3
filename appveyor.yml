@@ -12,18 +12,12 @@ environment:
   FIRMWARE_VERSION: 1.0.0
 
 install:
-  - sh: |
-      sudo apt-get update -qq
-      sudo -E apt-get install -y gcc-aarch64-linux-gnu python3-distutils
-      git submodule update --init --recursive
+  - sh: sudo apt-get update -qq
+  - sh: sudo -E apt-get install -y gcc-aarch64-linux-gnu python3-distutils
+  - sh: git submodule update --init --recursive
 
 build_script:
-  - sh: |
-      export GCC5_AARCH64_PREFIX=aarch64-linux-gnu-
-      export WORKSPACE=$PWD
-      export PACKAGES_PATH=$WORKSPACE/edk2:$WORKSPACE/edk2-platforms:$WORKSPACE/edk2-non-osi
-      source edk2/edksetup.sh
-      build -a AARCH64 -t GCC5 -p edk2-platforms/Platform/RaspberryPi/RPi3/RPi3.dsc -b RELEASE --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString=L"edk2-$FIRMWARE_VERSION"
+  - sh: ./build_firmware.sh
 
 after_build:
   - sh: sha256sum Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd
