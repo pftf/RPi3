@@ -1,0 +1,32 @@
+# Copyright (c) 2019, Pete Batard <pete@akeo.ie>
+# SPDX-License-Identifier: BSD-3-Clause
+
+image: Ubuntu1804
+
+skip_commits:
+  files:
+    - '**/*.md'
+    - '**/*.txt'
+
+environment:
+  FIRMWARE_VERSION: 1.0.0
+
+install:
+  - sh: sudo apt-get update -qq
+  - sh: sudo -E apt-get install -y gcc-aarch64-linux-gnu
+  - sh: git submodule update --init --recursive
+
+build_script:
+  - sh: export CROSS_COMPILE=/usr/bin/aarch64-linux-gnu-
+  - sh: export WORKSPACE=$PWD
+  - sh: export PACKAGES_PATH=$WORKSPACE/edk2:$WORKSPACE/edk2-platforms:$WORKSPACE/edk2-non-osi
+  - sh: . edk2/edksetup.sh --reconfig
+  - sh: build -a AARCH64 -t GCC5 -p edk2-platforms/Platform/RaspberryPi/RPi3/RPi3.dsc -b RELEASE --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString=L"edk2-$FIRMWARE_VERSION"
+
+after_build:
+  - sh: sha256sum Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd
+
+artifacts:
+  - path: Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd
+    name: RPi3 UEFI Firmware Image
+    type: file
