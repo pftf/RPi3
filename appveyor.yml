@@ -13,7 +13,7 @@ environment:
 
 install:
   - sh: sudo apt-get update -qq
-  - sh: sudo -E apt-get install -y gcc-aarch64-linux-gnu
+  - sh: sudo -E apt-get install -y gcc-aarch64-linux-gnu python3-distutils
   - sh: git submodule update --init --recursive
 
 build_script:
