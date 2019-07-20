@@ -6,23 +6,43 @@ image: Ubuntu1804
 skip_commits:
   files:
     - '**/*.md'
-    - '**/*.txt'
 
 environment:
-  FIRMWARE_VERSION: 1.0.0
+  FIRMWARE_VERSION: v1.0
 
 install:
-  - sh: sudo apt-get update -qq
-  - sh: sudo -E apt-get install -y acpica-tools gcc-aarch64-linux-gnu python3-distutils uuid-dev
-  - sh: git submodule update --init --recursive
+  sh: |-
+      sudo apt-get update -qq
+      sudo -E apt-get install -y acpica-tools gcc-aarch64-linux-gnu python3-distutils uuid-dev
+      git submodule update --init --recursive
+
+before_build:
+  ps: |-
+      Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/bootcode.bin
+      Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/fixup.dat
+      Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/start.elf
 
 build_script:
-  - sh: ./build_firmware.sh
+  sh: ./build_firmware.sh
 
 after_build:
-  - sh: sha256sum Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd
+  sh: |-
+      sha256sum Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd
+      cp config_3b.txt config.txt
+      7z a "Raspberry Pi 3 Model B.zip" $APPVEYOR_BUILD_FOLDER/Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd $APPVEYOR_BUILD_FOLDER/bootcode.bin $APPVEYOR_BUILD_FOLDER/config.txt $APPVEYOR_BUILD_FOLDER/fixup.dat $APPVEYOR_BUILD_FOLDER/start.elf
+      cp config_3b+.txt config.txt
+      7z a "Raspberry Pi 3 Model B.zip" $APPVEYOR_BUILD_FOLDER/Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd $APPVEYOR_BUILD_FOLDER/edk2-non-osi/Platform/RaspberryPi/RPi3/DeviceTree/bcm2710-rpi-3-b-plus.dtb $APPVEYOR_BUILD_FOLDER/bootcode.bin $APPVEYOR_BUILD_FOLDER/config.txt $APPVEYOR_BUILD_FOLDER/fixup.dat $APPVEYOR_BUILD_FOLDER/start.elf
 
 artifacts:
-  - path: Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd
-    name: RPi3 UEFI Firmware Image
-    type: file
+  path: '*.zip'
+  name: Raspberry Pi 3 UEFI Firmware
+
+deploy:
+  release: $(FIRMWARE_VERSION)
+  description: Raspberry Pi 3 UEFI Firmware $(FIRMWARE_VERSION)
+  provider: GitHub
+  auth_token:
+    secure: w5YuQOim+G+U7FxxrL0BH6t0trCWKCs9DMZlF4xqF2XGC6SymzwaJrPWrKeeJHPK
+  artifact: /.*\.zip/
+  draft: false
+  prerelease: false
