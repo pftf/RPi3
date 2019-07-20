@@ -41,5 +41,3 @@ deploy:
   artifact: /.*\.zip/
   draft: false
   prerelease: false
-  on:
-    appveyor_repo_tag: true
