@@ -3,12 +3,7 @@
 
 image: Ubuntu1804
 
-skip_commits:
-  files:
-    - '**/*.md'
-
-environment:
-  FIRMWARE_VERSION: v1.0
+skip_non_tags: true
 
 install:
   sh: |-
@@ -31,18 +26,20 @@ after_build:
       cp config_3b.txt config.txt
       7z a "Raspberry Pi 3 Model B.zip" $APPVEYOR_BUILD_FOLDER/Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd $APPVEYOR_BUILD_FOLDER/bootcode.bin $APPVEYOR_BUILD_FOLDER/config.txt $APPVEYOR_BUILD_FOLDER/fixup.dat $APPVEYOR_BUILD_FOLDER/start.elf
       cp config_3b+.txt config.txt
-      7z a "Raspberry Pi 3 Model B.zip" $APPVEYOR_BUILD_FOLDER/Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd $APPVEYOR_BUILD_FOLDER/edk2-non-osi/Platform/RaspberryPi/RPi3/DeviceTree/bcm2710-rpi-3-b-plus.dtb $APPVEYOR_BUILD_FOLDER/bootcode.bin $APPVEYOR_BUILD_FOLDER/config.txt $APPVEYOR_BUILD_FOLDER/fixup.dat $APPVEYOR_BUILD_FOLDER/start.elf
+      7z a "Raspberry Pi 3 Model B+.zip" $APPVEYOR_BUILD_FOLDER/Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd $APPVEYOR_BUILD_FOLDER/edk2-non-osi/Platform/RaspberryPi/RPi3/DeviceTree/bcm2710-rpi-3-b-plus.dtb $APPVEYOR_BUILD_FOLDER/bootcode.bin $APPVEYOR_BUILD_FOLDER/config.txt $APPVEYOR_BUILD_FOLDER/fixup.dat $APPVEYOR_BUILD_FOLDER/start.elf
 
 artifacts:
   path: '*.zip'
   name: Raspberry Pi 3 UEFI Firmware
 
 deploy:
-  release: $(FIRMWARE_VERSION)
-  description: Raspberry Pi 3 UEFI Firmware $(FIRMWARE_VERSION)
+  release: $(APPVEYOR_REPO_TAG_NAME)
+  description: Raspberry Pi 3 UEFI Firmware $(APPVEYOR_REPO_TAG_NAME)
   provider: GitHub
   auth_token:
     secure: w5YuQOim+G+U7FxxrL0BH6t0trCWKCs9DMZlF4xqF2XGC6SymzwaJrPWrKeeJHPK
   artifact: /.*\.zip/
   draft: false
   prerelease: false
+  on:
+    appveyor_repo_tag: true

@@ -40,7 +40,7 @@ to launch the UEFI Shell, or, provided you also have copied an UEFI bootloader i
 default if no action is taken).
 
 __Note:__ Provided you have relevant cooling (e.g. heatsink), it is __strongly__
-recommended that you go to setup on first boot (py pressing the <kbd>Esc</kbd> key) and
+recommended that you go to setup on first boot (by pressing the <kbd>Esc</kbd> key) and
 then go through `Device Manager` &rarr; `Raspberry Pi Configuration` &rarr; 
 `Chipset Configuration` to set `CPU Clock` to `<Max>`, as the default for the firmware
 is to limit the CPU clock to 600 MHz.
