@@ -10,14 +10,8 @@ This repository contains installable builds of the [EDK2 Raspberry Pi 3 UEFI fir
 
 # Installation
 
-* Download the relevant archive for your model which should be either:
-  - `RPi3_Model_B_UEFI_Firmware_v#.##.zip` __or__
-  - `RPi3_Model_B_Plus_UEFI_Firmware_v#.##.zip`.
+* Download the latest archive from the [Releases](https://github.com/pbatard/RPi3/releases) repository.
 
-  __Note:__ Make sure to select the proper archive, as the [Device Tree](https://en.wikipedia.org/wiki/Device_tree)
-  set up by each archive is different, and therefore using the wrong archive may
-  result in  hardware that is not properly detected or initialized.
-  
 * Create an SD card (or USB drive if you plan to use [USB Boot](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/msd.md))
   in `MBR` mode with a single partition of type `0x0c` (`FAT32 LBA`). Then format
   this partition to `FAT32`.
@@ -25,7 +19,10 @@ This repository contains installable builds of the [EDK2 Raspberry Pi 3 UEFI fir
   __Note:__ Do not try to use `GPT` for the partition scheme or `0xef` (`EFI System
   Partition`)  for the type, as these are unsupported by the CPU-embedded bootloader.
 
-* Extract all the files from the archive to the partition you created above. 
+* Extract all the files from the archive onto the partition you created above.  
+  Note that oputside of this `Readme.md`, which you can safely remove, you should not
+  rename the extracted files and directories (especially do __not__ rename the `.dtb`'s)
+  as you will face issues otherwise.
 
 # Usage
 

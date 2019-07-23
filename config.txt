@@ -1,0 +1,22 @@
+arm_control=0x200
+enable_uart=1
+armstub=RPI_EFI.fd
+disable_commandline_tags=2
+
+# Uncomment the following to use the full screen with HDMI
+#disable_overscan=1
+
+# The following enables the loading of the .dtb from the media.
+# If these lines are commented out then the device tree that is embedded
+# in the UEFI firmware will be used, which means it will be the one for
+# the Model B *only* (not Model 3 B+). This means that, unless you are
+# absolutely sure that you are only ever going to use a Model B and not
+# a Model B+, you should leave these 2 lines uncommented (and make sure
+# you have both a bcm2710-rpi-3-b.dtb and bcm2710-rpi-3-b-plus.dtb on
+# the root of your bootable media).
+device_tree_address=0x10000
+device_tree_end=0x20000
+
+# To force a specific device tree (i.e. not let VideoCore choose the file
+# for you) you can also uncomment the following.
+#device_tree=bcm2710-rpi-3-b-plus.dtb
