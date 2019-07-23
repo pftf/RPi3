@@ -11,8 +11,8 @@ This repository contains installable builds of the [EDK2 Raspberry Pi 3 UEFI fir
 # Installation
 
 * Download the relevant archive for your model which should be either:
-  - `Raspberry_Pi_3_Model_B.zip` __or__
-  - `Raspberry_Pi_3_Model_B_Plus.zip`.
+  - `RPi3_Model_B_UEFI_Firmware_v#.##.zip` __or__
+  - `RPi3_Model_B_Plus_UEFI_Firmware_v#.##.zip`.
 
   __Note:__ Make sure to select the proper archive, as the [Device Tree](https://en.wikipedia.org/wiki/Device_tree)
   set up by each archive is different, and therefore using the wrong archive may

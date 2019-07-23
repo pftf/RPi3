@@ -2,6 +2,8 @@ arm_control=0x200
 enable_uart=1
 armstub=RPI_EFI.fd
 disable_commandline_tags=2
+# Uncomment the following to use the full screen with HDMI
+#disable_overscan=1
 # The device tree for the Model B+ must be provided manually
 # because the firmware only provides the one for the Model B.
 device_tree_address=0x10000

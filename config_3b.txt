@@ -2,6 +2,8 @@ arm_control=0x200
 enable_uart=1
 armstub=RPI_EFI.fd
 disable_commandline_tags=1
+# Uncomment the following to use the full screen with HDMI
+#disable_overscan=1
 # The following is commented out because the firmware already
 # provides the below Device Tree (.dtb) by default. You can
 # uncomment these lines if you want to provide your own.
