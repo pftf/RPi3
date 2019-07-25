@@ -4,6 +4,10 @@ Raspberry Pi3 UEFI Firmware Images
 [![Build status](https://img.shields.io/appveyor/ci/pbatard/pitf.svg?style=flat-square)](https://ci.appveyor.com/project/pbatard/RPi3)
 [![Github stats](https://img.shields.io/github/downloads/pbatard/RPi3/total.svg?style=flat-square)](https://github.com/pbatard/RPi3/releases)
 
+![Screenshot](https://raw.githubusercontent.com/pbatard/RPi3/master/pics/Screenshot1.png)
+
+![Screenshot](https://raw.githubusercontent.com/pbatard/RPi3/master/pics/Screenshot2.png)
+
 # Summary
 
 This repository contains installable builds of the [EDK2 Raspberry Pi 3 UEFI firmware](https://github.com/tianocore/edk2-platforms/tree/master/Platform/RaspberryPi/RPi3).
@@ -28,7 +32,7 @@ This repository contains installable builds of the [EDK2 Raspberry Pi 3 UEFI fir
 
 Insert the SD card/plug the USB drive and power up your Raspberry Pi. You should see a
 multicoloured screen (which indicates that the CPU-embedded bootloader is reading the
-data from the SD/USB partition and then the Raspberry Pi black and white logo once the
+data from the SD/USB partition) and then the Raspberry Pi black and white logo once the
 UEFI firmware is ready.
 
 At this stage, you can press <kbd>Esc</kbd> to enter the firmware setup, <kbd>F1</kbd>
