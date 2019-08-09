@@ -1,5 +1,5 @@
-Raspberry Pi3 UEFI Firmware Images
-==================================
+Raspberry Pi 3 UEFI Firmware Images
+===================================
 
 [![Build status](https://img.shields.io/appveyor/ci/pbatard/pitf.svg?style=flat-square)](https://ci.appveyor.com/project/pbatard/RPi3)
 [![Github stats](https://img.shields.io/github/downloads/pbatard/RPi3/total.svg?style=flat-square)](https://github.com/pbatard/RPi3/releases)
@@ -17,8 +17,8 @@ This repository contains installable builds of the [EDK2 Raspberry Pi 3 UEFI fir
 * Download the latest archive from the [Releases](https://github.com/pbatard/RPi3/releases) repository.
 
 * Create an SD card (or USB drive if you plan to use [USB Boot](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/msd.md))
-  in `MBR` mode with a single partition of type `0x0c` (`FAT32 LBA`). Then format
-  this partition to `FAT32`.
+  in `MBR` mode with a single partition of type `0x0c` (`FAT32 LBA`) or `0x0e`
+  (`FAT16 LBA`). Then format this partition to `FAT32`.
 
   __Note:__ Do not try to use `GPT` for the partition scheme or `0xef` (`EFI System
   Partition`)  for the type, as these are unsupported by the CPU-embedded bootloader.
