@@ -25,8 +25,7 @@ This repository contains installable builds of the [EDK2 Raspberry Pi 3 UEFI fir
 
 * Extract all the files from the archive onto the partition you created above.  
   Note that oputside of this `Readme.md`, which you can safely remove, you should not
-  rename the extracted files and directories (especially do __not__ rename the `.dtb`'s)
-  as you will face issues otherwise.
+  change the name of the extracted files and directories.
 
 # Usage
 
