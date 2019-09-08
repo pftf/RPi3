@@ -10,7 +10,18 @@ Raspberry Pi 3 UEFI Firmware Images
 
 # Summary
 
-This repository contains installable builds of the [EDK2 Raspberry Pi 3 UEFI firmware](https://github.com/tianocore/edk2-platforms/tree/master/Platform/RaspberryPi/RPi3).
+This repository contains installable builds of the official
+[EDK2 Raspberry Pi 3 UEFI firmware](https://github.com/tianocore/edk2-platforms/tree/master/Platform/RaspberryPi/RPi3).
+
+The use of this firmware can __greatly simplify__ the installation of generic Linux
+distributions such as [Debian](https://pete.akeo.ie/2019/07/installing-debian-arm64-on-raspberry-pi.html)
+or [Ubuntu](https://github.com/tianocore/edk2-platforms/blob/master/Platform/RaspberryPi/RPi3/Systems.md#Ubuntu)
+as well as [Windows 10](https://www.worproject.ml/) (in regular GUI mode, not IoT mode),
+straight from their ISO images.
+
+The original development of this firmware was carried out by
+[Ard Biesheuvel](http://www.workofard.com/2017/02/uefi-on-the-pi/) and
+[Andrei Warkentin](https://github.com/andreiw/RaspberryPiPkg).
 
 # Installation
 
