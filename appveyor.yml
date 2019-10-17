@@ -22,8 +22,8 @@ build_script:
 
 after_build:
   sh: |-
-      sha256sum Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd
       7z a RPi3_UEFI_Firmware_$APPVEYOR_REPO_TAG_NAME.zip $APPVEYOR_BUILD_FOLDER/Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd $APPVEYOR_BUILD_FOLDER/bootcode.bin $APPVEYOR_BUILD_FOLDER/config.txt $APPVEYOR_BUILD_FOLDER/fixup.dat $APPVEYOR_BUILD_FOLDER/start.elf $APPVEYOR_BUILD_FOLDER/Readme.md firmware
+      sha256sum RPi3_UEFI_Firmware_$APPVEYOR_REPO_TAG_NAME.zip
 
 artifacts:
   - path: '*.zip'
