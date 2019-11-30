@@ -35,7 +35,7 @@ The original development of this firmware was carried out by
   Partition`)  for the type, as these are unsupported by the CPU-embedded bootloader.
 
 * Extract all the files from the archive onto the partition you created above.  
-  Note that oputside of this `Readme.md`, which you can safely remove, you should not
+  Note that outside of this `Readme.md`, which you can safely remove, you should not
   change the name of the extracted files and directories.
 
 # Usage
@@ -58,4 +58,11 @@ is to limit the CPU clock to 600 MHz.
 
 # License
 
+The firmware (`RPI_EFI.fd`) is licensed under the current EDK2 license, which is
 [BSD-3-Clause](https://github.com/ARM-software/arm-trusted-firmware/blob/master/license.rst).
+
+The other files at the root of the zip archives are licensed under the terms described in the
+[Raspberry Pi boot files README](https://github.com/raspberrypi/firmware/blob/master/README.md).
+
+The binary blobs in the `firmware/` directory are licensed under the Cypress wireless driver
+license that is found there.

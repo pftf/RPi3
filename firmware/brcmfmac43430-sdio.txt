@@ -2,15 +2,14 @@
 # 2.4 GHz, 20 MHz BW mode
 
 # The following parameter values are just placeholders, need to be updated.
-manfid=0x02d0
+manfid=0x2d0
 prodid=0x0726
 vendid=0x14e4
 devid=0x43e2
 boardtype=0x0726
 boardrev=0x1101
 boardnum=22
-# b8:27:eb = Raspberry Pi Foundation
-macaddr=b8:27:eb:30:01:00
+macaddr=00:90:4c:c5:12:38
 sromrev=11
 boardflags=0x00404201
 xtalfreq=26000
@@ -39,7 +38,7 @@ ofdmdigfilttype=7
 # PAPD mode:
 papdmode=2
 
-il0macaddr=b8:27:eb:30:01:00
+il0macaddr=00:90:4c:c5:12:38
 wl0id=0x431b
 
 #OOB parameters
@@ -52,3 +51,4 @@ deadman_to=0xffffffff
 muxenab=0x10
 # CLDO PWM voltage settings - 0x4 - 1.1 volt
 #cldo_pwm=0x4
+

@@ -3,12 +3,12 @@ NVRAMRev=$Rev: 498373 $
 sromrev=11
 vendid=0x14e4
 devid=0x43ab
-manfid=0x02d0
+manfid=0x2d0
 prodid=0x06e4
-# b8:27:eb = Raspberry Pi Foundation
-macaddr=b8:27:eb:31:01:00
+#macaddr=00:90:4c:c5:12:38
+macaddr=b8:27:eb:74:f2:6c
 nocrc=1
-boardtype=0x06e4
+boardtype=0x6e4
 boardrev=0x1304
 
 #XTAL 37.4MHz
