@@ -14,10 +14,8 @@ install:
 before_build:
   ps: |-
       Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/bootcode.bin
-      # Recent start.elf and fixup.dat files may produce "error: out of memory" when
-      # loading Linux, so pick the last known working versions. See issue #2.
-      Start-FileDownload https://github.com/raspberrypi/firmware/raw/0c01dbefba45a08c47f8538d5a071a0fba6b7e83/boot/fixup.dat
-      Start-FileDownload https://github.com/raspberrypi/firmware/raw/0c01dbefba45a08c47f8538d5a071a0fba6b7e83/boot/start.elf
+      Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/fixup.dat
+      Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/start.elf
 
 build_script:
   sh: ./build_firmware.sh
