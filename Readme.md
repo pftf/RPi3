@@ -25,7 +25,7 @@ The original development of this firmware was carried out by
 
 # Installation
 
-* Download the latest archive from the [Releases](https://github.com/pbatard/RPi3/releases) repository.
+* Download the latest archive from the [Releases](https://github.com/pftf/RPi3/releases) repository.
 
 * Create an SD card (or USB drive if you plan to use [USB Boot](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/msd.md))
   in `MBR` mode with a single partition of type `0x0c` (`FAT32 LBA`) or `0x0e`
@@ -49,12 +49,6 @@ At this stage, you can press <kbd>Esc</kbd> to enter the firmware setup, <kbd>F1
 to launch the UEFI Shell, or, provided you also have copied an UEFI bootloader in
 `efi/boot/bootaa64.efi`, you can let the UEFI system run that (which it should do by
 default if no action is taken).
-
-__Note:__ Provided you have relevant cooling (e.g. heatsink), it is __strongly__
-recommended that you go to setup on first boot (by pressing the <kbd>Esc</kbd> key) and
-then go through `Device Manager` &rarr; `Raspberry Pi Configuration` &rarr; 
-`CPU Configuration` to set `CPU Clock` to `<Max>`, as the default for the firmware
-is to limit the CPU clock to 600 MHz.
 
 # License
 
