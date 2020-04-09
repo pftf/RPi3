@@ -1,7 +1,7 @@
 Raspberry Pi 3 UEFI Firmware Images
 ===================================
 
-[![Build status](https://img.shields.io/appveyor/ci/pbatard/pftf-RPi3.svg?style=flat-square)](https://ci.appveyor.com/project/pbatard/pftf-RPi3)
+[![Build status](https://img.shields.io/appveyor/ci/pbatard/RPi3.svg?style=flat-square)](https://ci.appveyor.com/project/pbatard/RPi3)
 [![Github stats](https://img.shields.io/github/downloads/pftf/RPi3/total.svg?style=flat-square)](https://github.com/pftf/RPi3/releases)
 
 ![Screenshot](https://raw.githubusercontent.com/pftf/RPi3/master/pics/Screenshot1.png)
