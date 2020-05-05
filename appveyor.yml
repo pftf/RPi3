@@ -1,4 +1,4 @@
-# Copyright (c) 2019, Pete Batard <pete@akeo.ie>
+# Copyright (c) 2019-2020, Pete Batard <pete@akeo.ie>
 # SPDX-License-Identifier: BSD-3-Clause
 
 image: Ubuntu1804
@@ -16,13 +16,15 @@ before_build:
       Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/bootcode.bin
       Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/fixup.dat
       Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/start.elf
+      Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/bcm2710-rpi-3-b.dtb
+      Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/bcm2710-rpi-3-b-plus.dtb
 
 build_script:
   sh: ./build_firmware.sh
 
 after_build:
   sh: |-
-      7z a RPi3_UEFI_Firmware_$APPVEYOR_REPO_TAG_NAME.zip $APPVEYOR_BUILD_FOLDER/Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd $APPVEYOR_BUILD_FOLDER/bootcode.bin $APPVEYOR_BUILD_FOLDER/config.txt $APPVEYOR_BUILD_FOLDER/fixup.dat $APPVEYOR_BUILD_FOLDER/start.elf $APPVEYOR_BUILD_FOLDER/Readme.md firmware
+      7z a RPi3_UEFI_Firmware_$APPVEYOR_REPO_TAG_NAME.zip $APPVEYOR_BUILD_FOLDER/Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd $APPVEYOR_BUILD_FOLDER/bootcode.bin APPVEYOR_BUILD_FOLDER/config.txt $APPVEYOR_BUILD_FOLDER/fixup.dat $APPVEYOR_BUILD_FOLDER/start.elf $APPVEYOR_BUILD_FOLDER/Readme.md $APPVEYOR_BUILD_FOLDER/*.dtb firmware
       sha256sum RPi3_UEFI_Firmware_$APPVEYOR_REPO_TAG_NAME.zip
 
 artifacts:
