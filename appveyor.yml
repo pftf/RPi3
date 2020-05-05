@@ -14,8 +14,10 @@ install:
 before_build:
   ps: |-
       Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/bootcode.bin
-      Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/fixup.dat
-      Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/start.elf
+      # Temporarily switch to using the 9e3c23c... version of start.elf and fixup.bat
+      # until we have a solution for https://github.com/raspberrypi/firmware/issues/1376
+      Start-FileDownload https://github.com/raspberrypi/firmware/raw/9e3c23ce779e8cf44c33d6a25bba249319207f68/boot/fixup.dat
+      Start-FileDownload https://github.com/raspberrypi/firmware/raw/9e3c23ce779e8cf44c33d6a25bba249319207f68/boot/start.elf
       Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/bcm2710-rpi-3-b.dtb
       Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/bcm2710-rpi-3-b-plus.dtb
 
