@@ -18,6 +18,7 @@ before_build:
       Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/start.elf
       Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/bcm2710-rpi-3-b.dtb
       Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/bcm2710-rpi-3-b-plus.dtb
+      Start-FileDownload https://github.com/raspberrypi/firmware/raw/master/boot/bcm2710-rpi-cm3.dtb
 
 build_script:
   sh: ./build_firmware.sh
