@@ -38,6 +38,10 @@ The original development of this firmware was carried out by
 * Extract all the files from the archive onto the partition you created above.  
   Note that outside of this `Readme.md`, which you can safely remove, you should not
   change the name of the extracted files and directories.
+  
+* With recent Linux installs, please assure that the firmware is running in DT mode, either via
+  "Device Manager"->"Raspberry Pi Configuration"->"Advanced Configuration"->"System Table Selection"
+  or the Linux/Grub command line with "acpi=off".
 
 # Usage
 
