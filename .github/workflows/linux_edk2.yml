@@ -3,7 +3,7 @@
 
 name: UEFI firmware - EDK2 build
 
-on:  
+on:
   push:
     tags:
       - '*'
@@ -49,6 +49,9 @@ jobs:
         curl -O -L https://github.com/raspberrypi/firmware/raw/master/boot/bcm2710-rpi-3-b.dtb
         curl -O -L https://github.com/raspberrypi/firmware/raw/master/boot/bcm2710-rpi-3-b-plus.dtb
         curl -O -L https://github.com/raspberrypi/firmware/raw/master/boot/bcm2710-rpi-cm3.dtb
+    - name: List files
+      run: |
+        find . -type f -print0 | xargs -0 ls -lh
     - name: Create UEFI firmware archive
       run: zip -r RPi3_UEFI_Firmware_${{steps.set_version.outputs.version}}.zip RPI_EFI.fd bootcode.bin config.txt fixup.dat start.elf Readme.md *.dtb firmware
     - name: Display SHA-256
