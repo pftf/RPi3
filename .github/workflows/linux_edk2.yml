@@ -1,4 +1,4 @@
-# Copyright (c) 2021, Pete Batard <pete@akeo.ie>
+# Copyright (c) 2021-2022, Pete Batard <pete@akeo.ie>
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 
 name: UEFI firmware - EDK2 build
@@ -14,9 +14,11 @@ jobs:
     steps:
     - name: Set version
       id: set_version
-      run: echo "::set-output name=version::${GITHUB_REF/refs\/tags\//}"
+      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
     - name: Set up Linux environment
-      run: sudo apt install acpica-tools gcc-aarch64-linux-gnu python3-distutils uuid-dev
+      run: |
+        sudo apt-get update
+        sudo apt-get install acpica-tools gcc-aarch64-linux-gnu
     - name: Check out EDK2 repositories
       uses: actions/checkout@v2
     - name: Check out EDK2 submodules
@@ -55,21 +57,11 @@ jobs:
       run: sha256sum Build/RPi3/DEBUG_GCC5/FV/RPI_EFI.fd Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd RPi3_UEFI_Firmware_${{steps.set_version.outputs.version}}.zip
     - name: Create release
       id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      uses: softprops/action-gh-release@v1
       with:
         draft: false
         prerelease: false
-        release_name: ${{steps.set_version.outputs.version}}
-        body: Raspberry Pi 3 UEFI Firmware ${{steps.set_version.outputs.version}}
-        tag_name: ${{steps.set_version.outputs.version}}
-    - name: Upload release assets
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      with:
-        upload_url: ${{steps.create_release.outputs.upload_url}}
-        asset_path: RPi3_UEFI_Firmware_${{steps.set_version.outputs.version}}.zip
-        asset_name: RPi3_UEFI_Firmware_${{steps.set_version.outputs.version}}.zip
-        asset_content_type: application/zip
+        token: ${{ secrets.GITHUB_TOKEN }}
+        body: Raspberry Pi 3 UEFI Firmware ${{ steps.set_version.outputs.version }}
+        tag_name: ${{ steps.set_version.outputs.version }}
+        files: RPi3_UEFI_Firmware_${{ steps.set_version.outputs.version }}.zip

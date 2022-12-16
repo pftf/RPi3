@@ -1,7 +1,7 @@
 Raspberry Pi 3 UEFI Firmware Images
 ===================================
 
-[![Build status](https://img.shields.io/github/workflow/status/pftf/RPi3/UEFI%20firmware%20-%20EDK2%20build.svg?style=flat-square)](https://github.com/pftf/RPi3/actions)
+[![Build status](https://img.shields.io/github/actions/workflow/status/pftf/RPi3/linux_edk2.yml?branch=master&style=flat-square)](https://github.com/pftf/RPi3/actions)
 [![Github stats](https://img.shields.io/github/downloads/pftf/RPi3/total.svg?style=flat-square)](https://github.com/pftf/RPi3/releases)
 [![Release](https://img.shields.io/github/release-pre/pftf/RPi3?style=flat-square)](https://github.com/pftf/RPi3/releases)
 
