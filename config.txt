@@ -6,3 +6,5 @@ uart_2ndstage=1
 armstub=RPI_EFI.fd
 device_tree_address=0x1f0000
 device_tree_end=0x200000
+# Uncomment if you have trouble with the UART console during boot
+#core_freq=250
