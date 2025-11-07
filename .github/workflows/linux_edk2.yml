@@ -20,7 +20,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install acpica-tools gcc-aarch64-linux-gnu
     - name: Check out EDK2 repositories
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: recursive
     - name: Set up EDK2
@@ -37,7 +37,7 @@ jobs:
         build -a AARCH64 -t GCC5 -p edk2-platforms/Platform/RaspberryPi/RPi3/RPi3.dsc -b RELEASE --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor=L"https://github.com/pftf/RPi3" --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString=L"UEFI Firmware ${{steps.set_version.outputs.version}}" ${BUILD_FLAGS}
         cp Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd .
     - name: Upload UEFI firmware artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: RPi3 UEFI Firmware ${{steps.set_version.outputs.version}} Artifacts
         path: |
