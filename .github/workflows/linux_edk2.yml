@@ -29,21 +29,21 @@ jobs:
       run: |
         export WORKSPACE=$PWD
         export PACKAGES_PATH=$WORKSPACE/edk2:$WORKSPACE/edk2-platforms:$WORKSPACE/edk2-non-osi
-        export GCC5_AARCH64_PREFIX=aarch64-linux-gnu-
+        export GCC_AARCH64_PREFIX=aarch64-linux-gnu-
         export BUILD_FLAGS="-D SECURE_BOOT_ENABLE=TRUE -D INCLUDE_TFTP_COMMAND=TRUE -D NETWORK_ISCSI_ENABLE=TRUE"
         export TLS_DISABLE_FLAGS="-D NETWORK_TLS_ENABLE=FALSE -D NETWORK_ALLOW_HTTP_CONNECTIONS=TRUE"
         source edk2/edksetup.sh
         # EDK2's 'build' command doesn't play nice with spaces in environmnent variables, so we can't move the PCDs there...
-        build -a AARCH64 -t GCC5 -p edk2-platforms/Platform/RaspberryPi/RPi3/RPi3.dsc -b DEBUG --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor=L"https://github.com/pftf/RPi3" --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString=L"UEFI Firmware ${{steps.set_version.outputs.version}}" ${BUILD_FLAGS} ${TLS_DISABLE_FLAGS}
-        build -a AARCH64 -t GCC5 -p edk2-platforms/Platform/RaspberryPi/RPi3/RPi3.dsc -b RELEASE --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor=L"https://github.com/pftf/RPi3" --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString=L"UEFI Firmware ${{steps.set_version.outputs.version}}" ${BUILD_FLAGS}
-        cp Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd .
+        build -a AARCH64 -t GCC -p edk2-platforms/Platform/RaspberryPi/RPi3/RPi3.dsc -b DEBUG --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor=L"https://github.com/pftf/RPi3" --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString=L"UEFI Firmware ${{steps.set_version.outputs.version}}" ${BUILD_FLAGS} ${TLS_DISABLE_FLAGS}
+        build -a AARCH64 -t GCC -p edk2-platforms/Platform/RaspberryPi/RPi3/RPi3.dsc -b RELEASE --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor=L"https://github.com/pftf/RPi3" --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString=L"UEFI Firmware ${{steps.set_version.outputs.version}}" ${BUILD_FLAGS}
+        cp Build/RPi3/RELEASE_GCC/FV/RPI_EFI.fd .
     - name: Upload UEFI firmware artifacts
       uses: actions/upload-artifact@v4
       with:
         name: RPi3 UEFI Firmware ${{steps.set_version.outputs.version}} Artifacts
         path: |
-          Build/RPi3/DEBUG_GCC5/FV/RPI_EFI.fd
-          Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd
+          Build/RPi3/DEBUG_GCC/FV/RPI_EFI.fd
+          Build/RPi3/RELEASE_GCC/FV/RPI_EFI.fd
     - name: Download Raspberry Pi support files
       run: |
         curl -O -L https://github.com/raspberrypi/firmware/raw/master/boot/bootcode.bin
@@ -55,7 +55,7 @@ jobs:
     - name: Create UEFI firmware archive
       run: zip -r RPi3_UEFI_Firmware_${{steps.set_version.outputs.version}}.zip RPI_EFI.fd bootcode.bin config.txt fixup.dat start.elf Readme.md *.dtb firmware
     - name: Display SHA-256
-      run: sha256sum Build/RPi3/DEBUG_GCC5/FV/RPI_EFI.fd Build/RPi3/RELEASE_GCC5/FV/RPI_EFI.fd RPi3_UEFI_Firmware_${{steps.set_version.outputs.version}}.zip
+      run: sha256sum Build/RPi3/DEBUG_GCC/FV/RPI_EFI.fd Build/RPi3/RELEASE_GCC/FV/RPI_EFI.fd RPi3_UEFI_Firmware_${{steps.set_version.outputs.version}}.zip
     - name: Create release
       id: create_release
       uses: softprops/action-gh-release@v1
